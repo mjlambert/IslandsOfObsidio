@@ -3,7 +3,9 @@ using System.Collections;
 
 public class Waypoint : MonoBehaviour {
 
+    public GameObject gameManager;
 
+    private EnemyUnitManager enemyUnitManager;
 
     void OnTriggerEnter(Collider other)
     {
@@ -16,16 +18,19 @@ public class Waypoint : MonoBehaviour {
             }
             else
             {
-                enemyUnit.OnWaypointEnter(gameObject.transform.position);
+                enemyUnitManager.WaypointHit(gameObject, enemyUnit);
             }
         }
-
     }
     
     // Use this for initialization
 	void Start () {
-	
-	}
+        enemyUnitManager = gameManager.GetComponent<EnemyUnitManager>();
+        if (enemyUnitManager == null)
+        {
+            Debug.LogError("No EnemyUnitManager script found on the Game Manager");
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {

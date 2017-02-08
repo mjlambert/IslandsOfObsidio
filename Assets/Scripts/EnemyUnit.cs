@@ -15,11 +15,6 @@ public class EnemyUnit : MonoBehaviour {
         navMeshAgent.SetDestination(target);
     }
 
-    public void OnWaypointEnter(Vector3 waypointPosition)
-    {
-        SetDestination(waypointPosition);
-    }
-
     // Use this for initialization
     void Start () {
         navMeshAgent = GetComponent<NavMeshAgent>();
