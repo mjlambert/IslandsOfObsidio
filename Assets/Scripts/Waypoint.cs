@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Waypoint : MonoBehaviour {
+public class Waypoint : MonoBehaviour
+{
 
     public GameObject gameManager;
 
@@ -24,7 +25,8 @@ public class Waypoint : MonoBehaviour {
     }
     
     // Use this for initialization
-	void Start () {
+	void Start ()
+    {
         enemyUnitManager = gameManager.GetComponent<EnemyUnitManager>();
         if (enemyUnitManager == null)
         {
@@ -33,7 +35,8 @@ public class Waypoint : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 	
 	}
 }

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyUnit : MonoBehaviour {
+public class EnemyUnit : MonoBehaviour
+{
 
     private NavMeshAgent navMeshAgent;
 
@@ -16,13 +17,15 @@ public class EnemyUnit : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         navMeshAgent = GetComponent<NavMeshAgent>();
         SetDestination(new Vector3(-2.5f, 0f, 0f));
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 	
 	}
 }
