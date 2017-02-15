@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Waypoint : MonoBehaviour
 {
-
     public GameObject gameManager;
 
     private EnemyUnitManager enemyUnitManager;
@@ -33,10 +32,9 @@ public class Waypoint : MonoBehaviour
             Debug.LogError("No EnemyUnitManager script found on the Game Manager");
         }
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    private void OnDrawGizmos()
     {
-	
-	}
+        Gizmos.DrawIcon(transform.position, "waypoint.png");
+    }
 }
