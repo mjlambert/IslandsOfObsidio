@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 public class EnemyUnitManager : MonoBehaviour
 {
+    public GameObject enemyUnitPrefab;
+
+    public GameObject spawnPoint;
 
     public List<GameObject> waypoints;
 
@@ -28,6 +31,14 @@ public class EnemyUnitManager : MonoBehaviour
         // Tell enemy unit to go to next waypoint
         GameObject nextWayPoint = waypoints.ElementAt(nextIndex);
         enemyUnit.SetDestination(nextWayPoint.transform.position);
+    }
+
+    /// <summary>
+    /// Spawn an enemy unit at the enemy unit spawn point
+    /// </summary>
+    public void SpawnEnemyUnit()
+    {
+        Instantiate(enemyUnitPrefab, spawnPoint.transform.position, Quaternion.identity);
     }
 
 	// Use this for initialization

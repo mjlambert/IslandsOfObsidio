@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyUnit : MonoBehaviour
 {
 
-    private NavMeshAgent navMeshAgent;
+    private UnityEngine.AI.NavMeshAgent navMeshAgent;
 
 
     /// <summary>
@@ -19,7 +19,7 @@ public class EnemyUnit : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         SetDestination(new Vector3(-2.5f, 0f, 0f));
     }
 	
