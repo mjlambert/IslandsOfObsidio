@@ -24,4 +24,9 @@ public class GameManager : MonoBehaviour
     {
 		
 	}
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawIcon(transform.position, "gameManager.png");
+    }
 }
