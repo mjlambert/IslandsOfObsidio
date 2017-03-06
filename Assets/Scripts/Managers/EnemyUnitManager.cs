@@ -5,11 +5,37 @@ using System.Collections.Generic;
 
 public class EnemyUnitManager : MonoBehaviour
 {
-    public GameObject enemyUnitPrefab;
-
+    /// <summary>
+    /// Location enemy units will spawn.
+    /// </summary>
     public GameObject spawnPoint;
 
+    /// <summary>
+    /// Path enemy units will follow.
+    /// </summary>
     public List<GameObject> waypoints;
+
+    /// <summary>
+    /// Period of time between waves.
+    /// </summary>
+    public float waveDelay;
+
+    /// <summary>
+    /// Enemy Waves to run.
+    /// </summary>
+    public EnemyWave[] enemyWaves;
+
+	// Use this for initialization
+	void Start ()
+    {
+        StartCoroutine(SpawnWaves());
+	}
+	
+	// Update is called once per frame
+	void Update ()
+    {
+	
+	}
 
     /// <summary>
     /// Called when an enemy unit has hit a waypoint
@@ -34,22 +60,46 @@ public class EnemyUnitManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Spawn an enemy unit at the enemy unit spawn point
+    /// Spawn Enemy Waves
     /// </summary>
-    public void SpawnEnemyUnit()
+    /// <returns></returns>
+    private IEnumerator SpawnWaves()
     {
-        Instantiate(enemyUnitPrefab, spawnPoint.transform.position, Quaternion.identity);
+        for (int waveIndex = 0; waveIndex < enemyWaves.Length; waveIndex++)
+        {
+            yield return new WaitForSeconds(waveDelay);
+
+            EnemyWave currentWave = enemyWaves[waveIndex];
+
+            for (int enemiesSpawned = 0; enemiesSpawned < currentWave.enemiesToSpawn; enemiesSpawned++)
+            {
+                Instantiate(currentWave.enemyUnit, spawnPoint.transform.position, Quaternion.identity);
+                yield return new WaitForSeconds(currentWave.spawnRate);
+            }
+        }
     }
+}
 
-	// Use this for initialization
-	void Start ()
-    {
+[System.Serializable]
+public class EnemyWave
+{
+    /// <summary>
+    /// Enemy unit to spawn in this wave.
+    /// </summary>
+    public GameObject enemyUnit;
 
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-	
-	}
+    /// <summary>
+    /// Number of enemies to spawn in this wave.
+    /// </summary>
+    public int enemiesToSpawn;
+
+    /// <summary>
+    /// Period of time between spawning enemies in this wave.
+    /// </summary>
+    public float spawnRate;
+
+    /// <summary>
+    /// Time limit to complete this wave. (before the next wave starts)
+    /// </summary>
+    public float timeLimit;
 }
